@@ -84,13 +84,11 @@ extension AlbumViewController: UITableViewDataSource {
         coverAsset = fetchedAssets.firstObject
         cell.update(title: collection.localizedTitle ?? "Error", count: fetchedAssets.count)
         
-        guard let asset = coverAsset else { return cell }
-        
-        PHImageManager.default().requestImage(
-            for: asset, targetSize: cell.thumbnailView.bounds.size,
-               contentMode: .aspectFit, options: .none) { image, _ in
-                   cell.updateThumbnail(with: image)
+        cell.updateThumbnail(with: coverAsset) { success in
+            if !success {
+                self.presentAlert(title: "ERROR: Something went wrong fetching local photo")
             }
+        }
         
         return cell
     }

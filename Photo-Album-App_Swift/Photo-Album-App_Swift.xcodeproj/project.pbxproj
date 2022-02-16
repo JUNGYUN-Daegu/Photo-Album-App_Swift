@@ -19,6 +19,7 @@
 		886DE7AE27BCB57D005BEC34 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DE7AD27BCB57D005BEC34 /* AlbumViewController.swift */; };
 		886DE7B127BCC563005BEC34 /* AlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DE7AF27BCC563005BEC34 /* AlbumTableViewCell.swift */; };
 		886DE7B227BCC563005BEC34 /* AlbumTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 886DE7B027BCC563005BEC34 /* AlbumTableViewCell.xib */; };
+		886DE7B427BCE6D7005BEC34 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DE7B327BCE6D7005BEC34 /* UIImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		886DE7AD27BCB57D005BEC34 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		886DE7AF27BCC563005BEC34 /* AlbumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTableViewCell.swift; sourceTree = "<group>"; };
 		886DE7B027BCC563005BEC34 /* AlbumTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlbumTableViewCell.xib; sourceTree = "<group>"; };
+		886DE7B327BCE6D7005BEC34 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +84,7 @@
 		886DE79C27BCA1D6005BEC34 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				886DE79A27BCA13F005BEC34 /* UIViewController.swift */,
+				886DE7B527BCEF4D005BEC34 /* Extensions */,
 				886DE78627BBD073005BEC34 /* AppDelegate.swift */,
 				886DE78827BBD073005BEC34 /* SceneDelegate.swift */,
 			);
@@ -131,6 +133,15 @@
 				886DE7AD27BCB57D005BEC34 /* AlbumViewController.swift */,
 			);
 			path = CustomPicker;
+			sourceTree = "<group>";
+		};
+		886DE7B527BCEF4D005BEC34 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				886DE79A27BCA13F005BEC34 /* UIViewController.swift */,
+				886DE7B327BCE6D7005BEC34 /* UIImageView.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,6 +217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				886DE7B427BCE6D7005BEC34 /* UIImageView.swift in Sources */,
 				886DE7AE27BCB57D005BEC34 /* AlbumViewController.swift in Sources */,
 				886DE78B27BBD073005BEC34 /* MainViewController.swift in Sources */,
 				886DE78727BBD073005BEC34 /* AppDelegate.swift in Sources */,

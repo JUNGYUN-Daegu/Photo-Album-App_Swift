@@ -28,18 +28,26 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        var nameInfo = ""
+        var sizeInfo = ""
+        
         // referenceURL deprecated
         if let imageURL = info[.referenceURL] as? URL {
             let fileName = imageURL.lastPathComponent
-            print("파일명 : \(fileName)")
+            nameInfo = "파일명 : \(fileName)"
         }
         
         if let image = info[.originalImage] as? UIImage {
             let imgData = NSData(data: image.jpegData(compressionQuality: 1)!)
             let imageSize: Int = imgData.count // unit: byte
-            print(String.localizedStringWithFormat("파일크기 : %d MB", imageSize / 1_000_000))
+            sizeInfo = String.localizedStringWithFormat("파일크기 : %d MB", imageSize / 1_000_000)
         }
         
+        picker.presentAlert(
+            title: "사진정보", message: "\(nameInfo)\n\(sizeInfo)",
+            confirmTitle: "확인", confirmHandler: nil,
+            cancelTitle: nil, cancelHandler: nil,
+            completion: nil, autodismiss: nil)
     }
     
 }

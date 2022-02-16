@@ -25,11 +25,15 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         return UINib(nibName: self.identifier, bundle: nil)
     }
     
+    public func setThumbnailSize(with size: CGSize) {
+        self.thumbnailView.bounds.size = size
+    }
+    
     public func updateThumbnail(with asset: PHAsset?, completionHandler: ((Bool) -> Void)?) {
         
         self.thumbnailView.fetchImageAsset(
             with: asset, size: self.thumbnailView.bounds.size,
-            contentMode: .aspectFit, options: nil) { success in
+            contentMode: .aspectFill, options: nil) { success in
                 completionHandler?(success)
             }
     }

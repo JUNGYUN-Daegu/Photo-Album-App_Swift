@@ -116,7 +116,6 @@ extension AlbumViewController: UITableViewDelegate {
         
         targetAssets = PHAsset.fetchAssets(in: album, options: nil)
         targetTitle = album.localizedTitle ?? ""
-        print(targetAssets)
         
         self.performSegue(withIdentifier: "ToPhotoView", sender: self)
     }

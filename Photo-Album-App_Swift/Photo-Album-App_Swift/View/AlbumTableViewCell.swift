@@ -38,7 +38,7 @@ class AlbumTableViewCell: UITableViewCell {
         
         self.thumbnailView.fetchImageAsset(
             with: asset, size: self.thumbnailView.bounds.size,
-            contentMode: .aspectFit, options: nil) { success in
+            contentMode: .aspectFill, options: nil) { success in
                 completionHandler?(success)
             }
     }

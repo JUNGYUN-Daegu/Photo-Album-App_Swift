@@ -16,17 +16,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="85" height="75"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Ja-Pa-kA8">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Ja-Pa-kA8">
                         <rect key="frame" x="0.0" y="0.0" width="85" height="75"/>
                     </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="6Ja-Pa-kA8" secondAttribute="bottom" id="2eN-8U-LTd"/>
-                <constraint firstItem="6Ja-Pa-kA8" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="7Tn-3B-eVt"/>
-                <constraint firstAttribute="trailing" secondItem="6Ja-Pa-kA8" secondAttribute="trailing" id="aSH-2n-dsU"/>
-                <constraint firstItem="6Ja-Pa-kA8" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="n7R-Mp-zXr"/>
+                <constraint firstItem="6Ja-Pa-kA8" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="7ps-oh-X8d"/>
+                <constraint firstItem="6Ja-Pa-kA8" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="EBA-jl-9bR"/>
             </constraints>
             <size key="customSize" width="85" height="75"/>
             <connections>

@@ -28,7 +28,18 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        picker.dismiss(animated: true, completion: nil)
+        // referenceURL deprecated
+        if let imageURL = info[.referenceURL] as? URL {
+            let fileName = imageURL.lastPathComponent
+            print("파일명 : \(fileName)")
+        }
+        
+        if let image = info[.originalImage] as? UIImage {
+            let imgData = NSData(data: image.jpegData(compressionQuality: 1)!)
+            let imageSize: Int = imgData.count // unit: byte
+            print(String.localizedStringWithFormat("파일크기 : %d MB", imageSize / 1_000_000))
+        }
+        
     }
     
 }

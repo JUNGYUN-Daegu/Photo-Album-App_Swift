@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomPickerNavigationController: UINavigationController {
+final class CustomPickerNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

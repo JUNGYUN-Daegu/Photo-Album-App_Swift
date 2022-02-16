@@ -8,8 +8,8 @@
 import UIKit
 import Photos
 
-class PhotoViewController: UIViewController {
-    var assets: PHFetchResult<PHAsset>?
+final class PhotoViewController: UIViewController {
+    private var assets: PHFetchResult<PHAsset>?
     private let sectionInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     
     @IBOutlet weak var photoCollectionView: UICollectionView!
@@ -19,12 +19,12 @@ class PhotoViewController: UIViewController {
         self.setPhotoCollectionView()
     }
     
-    func prepareWith(assets: PHFetchResult<PHAsset>, title: String) {
+    public func inject(assets: PHFetchResult<PHAsset>, title: String) {
         self.assets = assets
         self.title = title
     }
     
-    func setPhotoCollectionView() {
+    private func setPhotoCollectionView() {
         self.photoCollectionView.register(PhotoCollectionViewCell.nib(), forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
         self.photoCollectionView.dataSource = self
         self.photoCollectionView.delegate = self
@@ -39,6 +39,25 @@ class PhotoViewController: UIViewController {
         
         return CGSize(width: cellWidth, height: cellWidth)
     }
+    
+    private func getFileName(of asset: PHAsset) -> String {
+        let resources = PHAssetResource.assetResources(for: asset)
+        let filename = resources.first?.originalFilename ?? ""
+        return filename
+    }
+    
+    private func getFileSize(of asset: PHAsset) -> String {
+        var sizeOnDisk: String = ""
+        let resources = PHAssetResource.assetResources(for: asset)
+        
+        if let resource = resources.first {
+            let unsignedInt64 = resource.value(forKey: "fileSize") as? CLong
+            let size = Int64(bitPattern: UInt64(unsignedInt64!))
+            sizeOnDisk = String(format: "%.2f", Double(size) / (1024.0*1024.0))+" MB"
+        }
+        
+        return sizeOnDisk
+    }
 }
 //MARK: - Collection View Data Source
 extension PhotoViewController: UICollectionViewDataSource {
@@ -51,7 +70,7 @@ extension PhotoViewController: UICollectionViewDataSource {
         guard let validAssets = assets else { return UICollectionViewCell() }
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath as IndexPath) as? PhotoCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.setThumbnailSize(with: getCellSize())
+        cell.setThumbnailSize(with: self.getCellSize())
         cell.updateThumbnail(with: validAssets[indexPath.row]) { success in
             if !success {
                 self.presentAlert(title: "ERROR: Something went wrong fetching local photo")
@@ -66,23 +85,15 @@ extension PhotoViewController: UICollectionViewDataSource {
 extension PhotoViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let validAssets = assets else { return }
-        let selectedAsset = validAssets[indexPath.row]
-        let resources = PHAssetResource.assetResources(for: selectedAsset)
-        let filename = resources.first?.originalFilename ?? ""
-        
-        var sizeOnDisk: String = ""
-        if let resource = resources.first {
-            let unsignedInt64 = resource.value(forKey: "fileSize") as? CLong
-            let hey = Int64(bitPattern: UInt64(unsignedInt64!))
-            sizeOnDisk = String(format: "%.2f", Double(hey) / (1024.0*1024.0))+" MB"
-        }
+        let selected = validAssets[indexPath.row]
+        let fileName = getFileName(of: selected)
+        let fileSize = getFileSize(of: selected)
         
         self.presentAlert(
-            title: "사진정보", message: "파일명 : \(filename)\n파일크기 : \(sizeOnDisk)",
+            title: "사진정보", message: "파일명 : \(fileName)\n파일크기 : \(fileSize)",
             confirmTitle: "확인", confirmHandler: nil,
             cancelTitle: nil, cancelHandler: nil,
             completion: nil, autodismiss: nil)
-        
     }
 }
 

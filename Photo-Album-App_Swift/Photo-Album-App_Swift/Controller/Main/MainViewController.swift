@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,9 +20,6 @@ class MainViewController: UIViewController {
         self.present(pickerController, animated: true)
     }
     
-    @IBAction func didTapCustomImagePickerButton(_ sender: UIButton) {
-        print("Did tap custom image picker button")
-    }
 }
 
 extension MainViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -43,14 +40,15 @@ extension MainViewController: UIImagePickerControllerDelegate, UINavigationContr
         if let image = info[.originalImage] as? UIImage {
             let imgData = NSData(data: image.jpegData(compressionQuality: 1)!)
             let imageSize: Int = imgData.count // unit: byte
-            sizeInfo = String.localizedStringWithFormat("파일크기 : %d MB", imageSize / 1_000_000)
+            let sizeString = String(format: "%.2f", Double(imageSize) / (1024.0*1024.0))+" MB"
+            sizeInfo = sizeString
         }
-        
+
         picker.presentAlert(
             title: "사진정보", message: "\(nameInfo)\n\(sizeInfo)",
             confirmTitle: "확인", confirmHandler: nil,
             cancelTitle: nil, cancelHandler: nil,
             completion: nil, autodismiss: nil)
     }
-    
+ 
 }

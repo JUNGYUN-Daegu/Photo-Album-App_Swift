@@ -8,13 +8,12 @@
 import UIKit
 import Photos
 
-class AlbumViewController: UIViewController {
+final class AlbumViewController: UIViewController {
     private var allPhotos = PHFetchResult<PHAsset>()
     //auto generated albums
     private var smartAlbums = PHFetchResult<PHAssetCollection>()
     //user created albums
     private var userCollections = PHFetchResult<PHAssetCollection>()
-    
     private var targetAssets: PHFetchResult<PHAsset>?
     private var targetTitle: String?
     
@@ -22,17 +21,16 @@ class AlbumViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemGray
-        
         self.setRightBarButtonItem()
         self.setAlbumTableView()
         self.fetchAssets()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let target = segue.destination as? PhotoViewController {
-            guard let validAssets = targetAssets, let validTitle = targetTitle else { return }
-            target.prepareWith(assets: validAssets, title: validTitle)
+        if let photoVC = segue.destination as? PhotoViewController {
+            guard let validAssets = targetAssets,
+                    let validTitle = targetTitle else { return }
+            photoVC.inject(assets: validAssets, title: validTitle)
         }
     }
     
@@ -55,7 +53,6 @@ class AlbumViewController: UIViewController {
     }
     
     private func fetchAssets() {
-        
         let allPhotosOptions = PHFetchOptions()
         allPhotosOptions.sortDescriptors = [
           NSSortDescriptor(
@@ -67,7 +64,7 @@ class AlbumViewController: UIViewController {
         
         smartAlbums = PHAssetCollection.fetchAssetCollections(
           with: .smartAlbum,
-          subtype: .albumRegular,
+          subtype: .smartAlbumFavorites,
           options: nil)
         
         userCollections = PHAssetCollection.fetchAssetCollections(
@@ -85,15 +82,15 @@ extension AlbumViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = albumTableView.dequeueReusableCell(
-            withIdentifier: AlbumTableViewCell.identifier
-        ) as? AlbumTableViewCell else { return UITableViewCell() }
+            withIdentifier: AlbumTableViewCell.identifier)
+                as? AlbumTableViewCell else { return UITableViewCell() }
                 
         var coverAsset: PHAsset?
         let collection = indexPath.row < smartAlbums.count ? smartAlbums[indexPath.row] : userCollections[indexPath.row - smartAlbums.count]
         let fetchedAssets = PHAsset.fetchAssets(in: collection, options: nil)
         coverAsset = fetchedAssets.firstObject
-        cell.update(title: collection.localizedTitle ?? "Error", count: fetchedAssets.count)
         
+        cell.update(title: collection.localizedTitle ?? "Error", count: fetchedAssets.count)
         cell.updateThumbnail(with: coverAsset) { success in
             if !success {
                 self.presentAlert(title: "ERROR: Something went wrong fetching local photo")
@@ -102,7 +99,6 @@ extension AlbumViewController: UITableViewDataSource {
         
         return cell
     }
-    
     
 }
 //MARK: - Table View Delegate
@@ -114,8 +110,8 @@ extension AlbumViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let album = indexPath.row < smartAlbums.count ? smartAlbums[indexPath.row] : userCollections[indexPath.row - smartAlbums.count]
         
-        targetAssets = PHAsset.fetchAssets(in: album, options: nil)
-        targetTitle = album.localizedTitle ?? ""
+        self.targetAssets = PHAsset.fetchAssets(in: album, options: nil)
+        self.targetTitle = album.localizedTitle
         
         self.performSegue(withIdentifier: "ToPhotoView", sender: self)
     }

@@ -36,7 +36,6 @@
                                             <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="didTapCustomImagePickerButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hOA-cs-6g5"/>
                                             <segue destination="a25-6h-9Ge" kind="presentation" modalPresentationStyle="fullScreen" id="5FK-Wj-UNV"/>
                                         </connections>
                                     </button>

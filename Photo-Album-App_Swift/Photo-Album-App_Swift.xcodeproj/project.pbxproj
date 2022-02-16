@@ -9,23 +9,29 @@
 /* Begin PBXBuildFile section */
 		886DE78727BBD073005BEC34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DE78627BBD073005BEC34 /* AppDelegate.swift */; };
 		886DE78927BBD073005BEC34 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DE78827BBD073005BEC34 /* SceneDelegate.swift */; };
-		886DE78B27BBD073005BEC34 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DE78A27BBD073005BEC34 /* ViewController.swift */; };
+		886DE78B27BBD073005BEC34 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DE78A27BBD073005BEC34 /* MainViewController.swift */; };
 		886DE78E27BBD073005BEC34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 886DE78C27BBD073005BEC34 /* Main.storyboard */; };
 		886DE79027BBD076005BEC34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 886DE78F27BBD076005BEC34 /* Assets.xcassets */; };
 		886DE79327BBD077005BEC34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 886DE79127BBD077005BEC34 /* LaunchScreen.storyboard */; };
 		886DE79B27BCA140005BEC34 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DE79A27BCA13F005BEC34 /* UIViewController.swift */; };
+		886DE7A827BCB4C1005BEC34 /* CustomPickerFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 886DE7A727BCB4C1005BEC34 /* CustomPickerFlow.storyboard */; };
+		886DE7AC27BCB547005BEC34 /* CustomPickerNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DE7AB27BCB547005BEC34 /* CustomPickerNavigationController.swift */; };
+		886DE7AE27BCB57D005BEC34 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DE7AD27BCB57D005BEC34 /* AlbumViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		886DE78327BBD073005BEC34 /* Photo-Album-App_Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Photo-Album-App_Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		886DE78627BBD073005BEC34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		886DE78827BBD073005BEC34 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		886DE78A27BBD073005BEC34 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		886DE78A27BBD073005BEC34 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		886DE78D27BBD073005BEC34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		886DE78F27BBD076005BEC34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		886DE79227BBD077005BEC34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		886DE79427BBD077005BEC34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		886DE79A27BCA13F005BEC34 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		886DE7A727BCB4C1005BEC34 /* CustomPickerFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CustomPickerFlow.storyboard; sourceTree = "<group>"; };
+		886DE7AB27BCB547005BEC34 /* CustomPickerNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerNavigationController.swift; sourceTree = "<group>"; };
+		886DE7AD27BCB57D005BEC34 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +68,6 @@
 				886DE79E27BCA1F0005BEC34 /* Model */,
 				886DE79D27BCA1E7005BEC34 /* View */,
 				886DE79F27BCA200005BEC34 /* Controller */,
-				886DE78C27BBD073005BEC34 /* Main.storyboard */,
 				886DE78F27BBD076005BEC34 /* Assets.xcassets */,
 				886DE79127BBD077005BEC34 /* LaunchScreen.storyboard */,
 				886DE79427BBD077005BEC34 /* Info.plist */,
@@ -97,9 +102,29 @@
 		886DE79F27BCA200005BEC34 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				886DE78A27BBD073005BEC34 /* ViewController.swift */,
+				886DE7A927BCB4FD005BEC34 /* Main */,
+				886DE7AA27BCB510005BEC34 /* CustomPicker */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		886DE7A927BCB4FD005BEC34 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				886DE78C27BBD073005BEC34 /* Main.storyboard */,
+				886DE78A27BBD073005BEC34 /* MainViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		886DE7AA27BCB510005BEC34 /* CustomPicker */ = {
+			isa = PBXGroup;
+			children = (
+				886DE7A727BCB4C1005BEC34 /* CustomPickerFlow.storyboard */,
+				886DE7AB27BCB547005BEC34 /* CustomPickerNavigationController.swift */,
+				886DE7AD27BCB57D005BEC34 /* AlbumViewController.swift */,
+			);
+			path = CustomPicker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,6 +188,7 @@
 				886DE79327BBD077005BEC34 /* LaunchScreen.storyboard in Resources */,
 				886DE79027BBD076005BEC34 /* Assets.xcassets in Resources */,
 				886DE78E27BBD073005BEC34 /* Main.storyboard in Resources */,
+				886DE7A827BCB4C1005BEC34 /* CustomPickerFlow.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,8 +199,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				886DE78B27BBD073005BEC34 /* ViewController.swift in Sources */,
+				886DE7AE27BCB57D005BEC34 /* AlbumViewController.swift in Sources */,
+				886DE78B27BBD073005BEC34 /* MainViewController.swift in Sources */,
 				886DE78727BBD073005BEC34 /* AppDelegate.swift in Sources */,
+				886DE7AC27BCB547005BEC34 /* CustomPickerNavigationController.swift in Sources */,
 				886DE79B27BCA140005BEC34 /* UIViewController.swift in Sources */,
 				886DE78927BBD073005BEC34 /* SceneDelegate.swift in Sources */,
 			);

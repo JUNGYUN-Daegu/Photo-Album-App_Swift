@@ -10,6 +10,13 @@ import Photos
 
 final class MainViewController: UIViewController {
 
+    private let prompter: UILabel = {
+       let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Please enable access to local photo library"
+        return label
+    }()
+    
     @IBOutlet weak var builtInImagePickerButton: UIButton!
     @IBOutlet weak var customImagePickerButton: UIButton!
     
@@ -17,11 +24,9 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         self.getPermissionIfNecessary { [unowned self] granted in
             if granted {
-                self.builtInImagePickerButton.isHidden = false
-                self.customImagePickerButton.isHidden = false
+                self.uiChangeWithAuthorization()
             } else {
-                self.builtInImagePickerButton.isHidden = true
-                self.customImagePickerButton.isHidden = true
+                self.uiChangeWithoutAuthorization()
             }
         }
     }
@@ -41,6 +46,29 @@ final class MainViewController: UIViewController {
         
         PHPhotoLibrary.requestAuthorization { status in
           completionHandler(status == .authorized)
+        }
+    }
+    
+    private func uiChangeWithAuthorization() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.prompter.isHidden = true
+            self.builtInImagePickerButton.isHidden = false
+            self.customImagePickerButton.isHidden = false
+        }
+    }
+    
+    private func uiChangeWithoutAuthorization() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.builtInImagePickerButton.isHidden = true
+            self.customImagePickerButton.isHidden = true
+            self.view.addSubview(self.prompter)
+            
+            NSLayoutConstraint.activate([
+                self.prompter.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+                self.prompter.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+            ])
         }
     }
     

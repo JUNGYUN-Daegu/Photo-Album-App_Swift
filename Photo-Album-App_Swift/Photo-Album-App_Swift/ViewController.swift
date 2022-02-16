@@ -14,5 +14,9 @@ class ViewController: UIViewController {
         
     }
 
+    @IBAction func didTapUIImagePickerControllerButton(_ sender: UIButton) {
+        print("UIImagePickerControllerButton Tapped")
+    }
+    
 }
 

@@ -6,11 +6,24 @@
 //
 
 import UIKit
+import Photos
 
 final class MainViewController: UIViewController {
 
+    @IBOutlet weak var builtInImagePickerButton: UIButton!
+    @IBOutlet weak var customImagePickerButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.getPermissionIfNecessary { [unowned self] granted in
+            if granted {
+                self.builtInImagePickerButton.isHidden = false
+                self.customImagePickerButton.isHidden = false
+            } else {
+                self.builtInImagePickerButton.isHidden = true
+                self.customImagePickerButton.isHidden = true
+            }
+        }
     }
 
     @IBAction func didTapBuiltInImagePickerButton(_ sender: UIButton) {
@@ -18,6 +31,17 @@ final class MainViewController: UIViewController {
         pickerController.sourceType = .photoLibrary
         pickerController.delegate = self
         self.present(pickerController, animated: true)
+    }
+    
+    private func getPermissionIfNecessary(completionHandler: @escaping (Bool) -> Void) {
+        guard PHPhotoLibrary.authorizationStatus() != .authorized else {
+          completionHandler(true)
+          return
+        }
+        
+        PHPhotoLibrary.requestAuthorization { status in
+          completionHandler(status == .authorized)
+        }
     }
     
 }

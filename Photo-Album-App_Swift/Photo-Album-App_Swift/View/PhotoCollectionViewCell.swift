@@ -8,7 +8,7 @@
 import UIKit
 import Photos
 
-class PhotoCollectionViewCell: UICollectionViewCell {
+final class PhotoCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var thumbnailView: UIImageView!
     

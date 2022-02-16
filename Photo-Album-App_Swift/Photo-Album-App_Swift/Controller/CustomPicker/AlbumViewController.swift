@@ -25,11 +25,11 @@ final class AlbumViewController: UIViewController {
         self.setAlbumTableView()
         self.fetchAssets()
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let photoVC = segue.destination as? PhotoViewController {
             guard let validAssets = targetAssets,
-                    let validTitle = targetTitle else { return }
+                  let validTitle = targetTitle else { return }
             photoVC.inject(assets: validAssets, title: validTitle)
         }
     }
@@ -55,22 +55,22 @@ final class AlbumViewController: UIViewController {
     private func fetchAssets() {
         let allPhotosOptions = PHFetchOptions()
         allPhotosOptions.sortDescriptors = [
-          NSSortDescriptor(
-            key: "creationDate",
-            ascending: false)
+            NSSortDescriptor(
+                key: "creationDate",
+                ascending: false)
         ]
         
-        allPhotos = PHAsset.fetchAssets(with: allPhotosOptions)
+        self.allPhotos = PHAsset.fetchAssets(with: allPhotosOptions)
         
-        smartAlbums = PHAssetCollection.fetchAssetCollections(
-          with: .smartAlbum,
-          subtype: .smartAlbumFavorites,
-          options: nil)
+        self.smartAlbums = PHAssetCollection.fetchAssetCollections(
+            with: .smartAlbum,
+            subtype: .smartAlbumFavorites,
+            options: nil)
         
-        userCollections = PHAssetCollection.fetchAssetCollections(
-          with: .album,
-          subtype: .albumRegular,
-          options: nil)
+        self.userCollections = PHAssetCollection.fetchAssetCollections(
+            with: .album,
+            subtype: .albumRegular,
+            options: nil)
     }
 }
 
@@ -84,7 +84,7 @@ extension AlbumViewController: UITableViewDataSource {
         guard let cell = albumTableView.dequeueReusableCell(
             withIdentifier: AlbumTableViewCell.identifier)
                 as? AlbumTableViewCell else { return UITableViewCell() }
-                
+        
         var coverAsset: PHAsset?
         let collection = indexPath.row < smartAlbums.count ? smartAlbums[indexPath.row] : userCollections[indexPath.row - smartAlbums.count]
         let fetchedAssets = PHAsset.fetchAssets(in: collection, options: nil)
@@ -104,7 +104,8 @@ extension AlbumViewController: UITableViewDataSource {
 //MARK: - Table View Delegate
 extension AlbumViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 85
+        let fixedCellHeight: CGFloat = 85.0
+        return fixedCellHeight
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -112,7 +113,7 @@ extension AlbumViewController: UITableViewDelegate {
         
         self.targetAssets = PHAsset.fetchAssets(in: album, options: nil)
         self.targetTitle = album.localizedTitle
-        
+        self.navigationItem.backButtonTitle = ""
         self.performSegue(withIdentifier: "ToPhotoView", sender: self)
     }
 }

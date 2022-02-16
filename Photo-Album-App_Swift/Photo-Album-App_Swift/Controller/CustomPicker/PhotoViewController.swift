@@ -108,11 +108,13 @@ extension PhotoViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 4
+        let fixedLineSpacing: CGFloat = 4.0
+        return fixedLineSpacing
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 4
+        let fixedLineSpacing: CGFloat = 4.0
+        return fixedLineSpacing
     }
 
 }

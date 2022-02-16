@@ -8,7 +8,7 @@
 import UIKit
 import Photos
 
-class AlbumTableViewCell: UITableViewCell {
+final class AlbumTableViewCell: UITableViewCell {
     @IBOutlet weak var thumbnailView: UIImageView!
     @IBOutlet weak var albumTitleLabel: UILabel!
     @IBOutlet weak var photoCountLabel: UILabel!

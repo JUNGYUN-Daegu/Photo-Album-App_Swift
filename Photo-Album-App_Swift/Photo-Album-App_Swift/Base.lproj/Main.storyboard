@@ -16,17 +16,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="g9V-gO-Zkm">
-                                <rect key="frame" x="42" y="429" width="330.5" height="38"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="g9V-gO-Zkm">
+                                <rect key="frame" x="50" y="406" width="314" height="84"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VlC-TP-7CG">
-                                        <rect key="frame" x="0.0" y="0.0" width="330.5" height="38"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" title="Show as UIImagePickerController">
-                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="20"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="VlC-TP-7CG">
+                                        <rect key="frame" x="0.0" y="0.0" width="314" height="32"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <buttonConfiguration key="configuration" style="gray" title="With Built-in Image Picker" cornerStyle="medium" titleAlignment="center">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="didTapUIImagePickerControllerButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tcj-VJ-tOr"/>
+                                            <action selector="didTapBuiltInImagePickerButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2eL-mY-fS6"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="RB7-Xd-M6R">
+                                        <rect key="frame" x="0.0" y="52" width="314" height="32"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <buttonConfiguration key="configuration" style="gray" title="With Custom Image Picker" cornerStyle="medium" titleAlignment="center">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="didTapCustomImagePickerButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hOA-cs-6g5"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -37,6 +47,8 @@
                         <constraints>
                             <constraint firstItem="g9V-gO-Zkm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="46h-KE-WvC"/>
                             <constraint firstItem="g9V-gO-Zkm" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="XbM-EH-9xy"/>
+                            <constraint firstItem="g9V-gO-Zkm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="hRo-pu-u02"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="g9V-gO-Zkm" secondAttribute="trailing" constant="50" id="zoF-IP-y5h"/>
                         </constraints>
                     </view>
                 </viewController>

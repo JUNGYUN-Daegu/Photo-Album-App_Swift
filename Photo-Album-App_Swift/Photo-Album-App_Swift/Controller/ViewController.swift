@@ -13,13 +13,16 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
 
-    @IBAction func didTapUIImagePickerControllerButton(_ sender: UIButton) {
+    @IBAction func didTapBuiltInImagePickerButton(_ sender: UIButton) {
         let pickerController = UIImagePickerController()
         pickerController.sourceType = .photoLibrary
         pickerController.delegate = self
         self.present(pickerController, animated: true)
     }
     
+    @IBAction func didTapCustomImagePickerButton(_ sender: UIButton) {
+        print("Did tap custom image picker button")
+    }
 }
 
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

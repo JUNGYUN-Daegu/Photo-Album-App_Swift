@@ -15,6 +15,9 @@ class AlbumViewController: UIViewController {
     //user created albums
     private var userCollections = PHFetchResult<PHAssetCollection>()
     
+    private var targetAssets: PHFetchResult<PHAsset>?
+    private var targetTitle: String?
+    
     @IBOutlet weak var albumTableView: UITableView!
     
     override func viewDidLoad() {
@@ -26,6 +29,13 @@ class AlbumViewController: UIViewController {
         self.fetchAssets()
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let target = segue.destination as? PhotoViewController {
+            guard let validAssets = targetAssets, let validTitle = targetTitle else { return }
+            target.prepareWith(assets: validAssets, title: validTitle)
+        }
+    }
+    
     private func setRightBarButtonItem() {
         let backToMainButton = UIBarButtonItem(barButtonSystemItem: .cancel,
                                                target: self,
@@ -99,5 +109,15 @@ extension AlbumViewController: UITableViewDataSource {
 extension AlbumViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 85
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let album = indexPath.row < smartAlbums.count ? smartAlbums[indexPath.row] : userCollections[indexPath.row - smartAlbums.count]
+        
+        targetAssets = PHAsset.fetchAssets(in: album, options: nil)
+        targetTitle = album.localizedTitle ?? ""
+        print(targetAssets)
+        
+        self.performSegue(withIdentifier: "ToPhotoView", sender: self)
     }
 }

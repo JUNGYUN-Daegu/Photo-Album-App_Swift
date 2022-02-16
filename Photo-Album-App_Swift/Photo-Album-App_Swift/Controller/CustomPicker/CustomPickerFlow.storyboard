@@ -49,11 +49,50 @@
                     <navigationItem key="navigationItem" title="앨범" id="CyU-aa-mzv"/>
                     <connections>
                         <outlet property="albumTableView" destination="WBR-bs-4KT" id="oWU-du-qRZ"/>
+                        <segue destination="IDo-X8-Kmg" kind="show" identifier="ToPhotoView" id="dRk-QV-W0W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="23S-tp-UrJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1648" y="94"/>
+        </scene>
+        <!--Photo View Controller-->
+        <scene sceneID="gWg-Ib-TbF">
+            <objects>
+                <viewController id="IDo-X8-Kmg" customClass="PhotoViewController" customModule="Photo_Album_App_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GKA-fx-RUo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Kn1-yb-t8j">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="O1s-8c-EX3">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="7vU-7G-wda"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Kn1-yb-t8j" firstAttribute="leading" secondItem="7vU-7G-wda" secondAttribute="leading" id="5Dq-fo-9T9"/>
+                            <constraint firstItem="7vU-7G-wda" firstAttribute="bottom" secondItem="Kn1-yb-t8j" secondAttribute="bottom" id="DAq-zo-UVx"/>
+                            <constraint firstItem="7vU-7G-wda" firstAttribute="trailing" secondItem="Kn1-yb-t8j" secondAttribute="trailing" id="kwi-hQ-O9w"/>
+                            <constraint firstItem="Kn1-yb-t8j" firstAttribute="top" secondItem="7vU-7G-wda" secondAttribute="top" id="nW5-V2-XaF"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="UMX-wt-ayE"/>
+                    <connections>
+                        <outlet property="photoCollectionView" destination="Kn1-yb-t8j" id="FEU-qU-bOL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xID-Jv-JBp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2455" y="94"/>
         </scene>
     </scenes>
     <resources>

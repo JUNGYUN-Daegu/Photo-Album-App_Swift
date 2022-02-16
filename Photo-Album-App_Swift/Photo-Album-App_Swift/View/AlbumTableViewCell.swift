@@ -8,6 +8,7 @@
 import UIKit
 
 class AlbumTableViewCell: UITableViewCell {
+    @IBOutlet weak var thumbnailView: UIImageView!
     @IBOutlet weak var albumTitleLabel: UILabel!
     @IBOutlet weak var photoCountLabel: UILabel!
     static var identifier: String {
@@ -16,7 +17,7 @@ class AlbumTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.contentView.backgroundColor = .red
+        self.setDefaultThumbnail()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -26,6 +27,21 @@ class AlbumTableViewCell: UITableViewCell {
     
     static func nib() -> UINib {
         return UINib(nibName: self.identifier, bundle: nil)
+    }
+    
+    private func setDefaultThumbnail() {
+        self.thumbnailView.image = UIImage(systemName: "photo")?.withTintColor(.gray, renderingMode: .alwaysOriginal)
+    }
+    
+    public func update(title: String, count: Int) {
+        self.albumTitleLabel.text = title
+        self.photoCountLabel.text = "\(count)"
+    }
+    
+    public func updateThumbnail(with image: UIImage?) {
+        if let validImage = image {
+            self.thumbnailView.image = validImage
+        }
     }
     
 }

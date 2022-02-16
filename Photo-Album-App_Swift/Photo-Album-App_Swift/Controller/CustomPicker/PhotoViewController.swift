@@ -65,7 +65,24 @@ extension PhotoViewController: UICollectionViewDataSource {
 //MARK: - Collection View Delegate
 extension PhotoViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("You selected cell #\(indexPath.item)!")
+        guard let validAssets = assets else { return }
+        let selectedAsset = validAssets[indexPath.row]
+        let resources = PHAssetResource.assetResources(for: selectedAsset)
+        let filename = resources.first?.originalFilename ?? ""
+        
+        var sizeOnDisk: String = ""
+        if let resource = resources.first {
+            let unsignedInt64 = resource.value(forKey: "fileSize") as? CLong
+            let hey = Int64(bitPattern: UInt64(unsignedInt64!))
+            sizeOnDisk = String(format: "%.2f", Double(hey) / (1024.0*1024.0))+" MB"
+        }
+        
+        self.presentAlert(
+            title: "사진정보", message: "파일명 : \(filename)\n파일크기 : \(sizeOnDisk)",
+            confirmTitle: "확인", confirmHandler: nil,
+            cancelTitle: nil, cancelHandler: nil,
+            completion: nil, autodismiss: nil)
+        
     }
 }
 

@@ -17,6 +17,8 @@
 		886DE7A827BCB4C1005BEC34 /* CustomPickerFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 886DE7A727BCB4C1005BEC34 /* CustomPickerFlow.storyboard */; };
 		886DE7AC27BCB547005BEC34 /* CustomPickerNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DE7AB27BCB547005BEC34 /* CustomPickerNavigationController.swift */; };
 		886DE7AE27BCB57D005BEC34 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DE7AD27BCB57D005BEC34 /* AlbumViewController.swift */; };
+		886DE7B127BCC563005BEC34 /* AlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DE7AF27BCC563005BEC34 /* AlbumTableViewCell.swift */; };
+		886DE7B227BCC563005BEC34 /* AlbumTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 886DE7B027BCC563005BEC34 /* AlbumTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		886DE7A727BCB4C1005BEC34 /* CustomPickerFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CustomPickerFlow.storyboard; sourceTree = "<group>"; };
 		886DE7AB27BCB547005BEC34 /* CustomPickerNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerNavigationController.swift; sourceTree = "<group>"; };
 		886DE7AD27BCB57D005BEC34 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
+		886DE7AF27BCC563005BEC34 /* AlbumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTableViewCell.swift; sourceTree = "<group>"; };
+		886DE7B027BCC563005BEC34 /* AlbumTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlbumTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,8 @@
 		886DE79D27BCA1E7005BEC34 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				886DE7AF27BCC563005BEC34 /* AlbumTableViewCell.swift */,
+				886DE7B027BCC563005BEC34 /* AlbumTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -188,6 +194,7 @@
 				886DE79327BBD077005BEC34 /* LaunchScreen.storyboard in Resources */,
 				886DE79027BBD076005BEC34 /* Assets.xcassets in Resources */,
 				886DE78E27BBD073005BEC34 /* Main.storyboard in Resources */,
+				886DE7B227BCC563005BEC34 /* AlbumTableViewCell.xib in Resources */,
 				886DE7A827BCB4C1005BEC34 /* CustomPickerFlow.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -203,6 +210,7 @@
 				886DE78B27BBD073005BEC34 /* MainViewController.swift in Sources */,
 				886DE78727BBD073005BEC34 /* AppDelegate.swift in Sources */,
 				886DE7AC27BCB547005BEC34 /* CustomPickerNavigationController.swift in Sources */,
+				886DE7B127BCC563005BEC34 /* AlbumTableViewCell.swift in Sources */,
 				886DE79B27BCA140005BEC34 /* UIViewController.swift in Sources */,
 				886DE78927BBD073005BEC34 /* SceneDelegate.swift in Sources */,
 			);

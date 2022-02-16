@@ -11,8 +11,6 @@ class CustomPickerNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationBar.backgroundColor = .gray
     }
     
 }

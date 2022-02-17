@@ -23,6 +23,7 @@
 		886DE7C227BCF630005BEC34 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DE7C027BCF630005BEC34 /* PhotoViewController.swift */; };
 		886DE7C627BCFDBF005BEC34 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DE7C427BCFDBF005BEC34 /* PhotoCollectionViewCell.swift */; };
 		886DE7C727BCFDBF005BEC34 /* PhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 886DE7C527BCFDBF005BEC34 /* PhotoCollectionViewCell.xib */; };
+		886DE7C927BDDB5C005BEC34 /* CustomPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DE7C827BDDB5C005BEC34 /* CustomPickerViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		886DE7C027BCF630005BEC34 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		886DE7C427BCFDBF005BEC34 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		886DE7C527BCFDBF005BEC34 /* PhotoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoCollectionViewCell.xib; sourceTree = "<group>"; };
+		886DE7C827BDDB5C005BEC34 /* CustomPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 		886DE79E27BCA1F0005BEC34 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				886DE7C827BDDB5C005BEC34 /* CustomPickerViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 				886DE7B127BCC563005BEC34 /* AlbumTableViewCell.swift in Sources */,
 				886DE79B27BCA140005BEC34 /* UIViewController.swift in Sources */,
 				886DE78927BBD073005BEC34 /* SceneDelegate.swift in Sources */,
+				886DE7C927BDDB5C005BEC34 /* CustomPickerViewModel.swift in Sources */,
 				886DE7C227BCF630005BEC34 /* PhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

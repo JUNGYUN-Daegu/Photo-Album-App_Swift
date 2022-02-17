@@ -9,29 +9,29 @@ import UIKit
 import Photos
 
 final class AlbumViewController: UIViewController {
-    private var allPhotos = PHFetchResult<PHAsset>()
-    //auto generated albums
-    private var smartAlbums = PHFetchResult<PHAssetCollection>()
-    //user created albums
-    private var userCollections = PHFetchResult<PHAssetCollection>()
-    private var targetAssets: PHFetchResult<PHAsset>?
-    private var targetTitle: String?
-    
+    private var vm: LocalPhotoManageable! = nil
     @IBOutlet weak var albumTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setRightBarButtonItem()
         self.setAlbumTableView()
-        self.fetchAssets()
+    }
+    
+    public func inject(viewModel: LocalPhotoManageable) {
+        self.vm = viewModel
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let photoVC = segue.destination as? PhotoViewController {
-            guard let validAssets = targetAssets,
-                  let validTitle = targetTitle else { return }
+            guard let validAssets = vm.getTargetAssets(),
+                  let validTitle = vm.getTargetTitle() else { return }
             photoVC.inject(assets: validAssets, title: validTitle)
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationItem.backButtonTitle = ""
     }
     
     private func setRightBarButtonItem() {
@@ -52,32 +52,12 @@ final class AlbumViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    private func fetchAssets() {
-        let allPhotosOptions = PHFetchOptions()
-        allPhotosOptions.sortDescriptors = [
-            NSSortDescriptor(
-                key: "creationDate",
-                ascending: false)
-        ]
-        
-        self.allPhotos = PHAsset.fetchAssets(with: allPhotosOptions)
-        
-        self.smartAlbums = PHAssetCollection.fetchAssetCollections(
-            with: .smartAlbum,
-            subtype: .smartAlbumFavorites,
-            options: nil)
-        
-        self.userCollections = PHAssetCollection.fetchAssetCollections(
-            with: .album,
-            subtype: .albumRegular,
-            options: nil)
-    }
 }
 
 //MARK: - Table View Data Source
 extension AlbumViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return smartAlbums.count + userCollections.count
+        return vm.getAlbumCount()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -85,18 +65,16 @@ extension AlbumViewController: UITableViewDataSource {
             withIdentifier: AlbumTableViewCell.identifier)
                 as? AlbumTableViewCell else { return UITableViewCell() }
         
-        var coverAsset: PHAsset?
-        let collection = indexPath.row < smartAlbums.count ? smartAlbums[indexPath.row] : userCollections[indexPath.row - smartAlbums.count]
-        let fetchedAssets = PHAsset.fetchAssets(in: collection, options: nil)
-        coverAsset = fetchedAssets.firstObject
+        let albumTitle = self.vm.getCollectionName(with: indexPath.row)
+        let count = self.vm.getCollectionCount(with: indexPath.row)
+        cell.update(title: albumTitle, count: count)
         
-        cell.update(title: collection.localizedTitle ?? "Error", count: fetchedAssets.count)
+        let coverAsset = vm.getThumbnailAsset(with: indexPath.row)
         cell.updateThumbnail(with: coverAsset) { success in
             if !success {
                 self.presentAlert(title: "ERROR: Something went wrong fetching local photo")
             }
         }
-        
         return cell
     }
     
@@ -109,11 +87,7 @@ extension AlbumViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let album = indexPath.row < smartAlbums.count ? smartAlbums[indexPath.row] : userCollections[indexPath.row - smartAlbums.count]
-        
-        self.targetAssets = PHAsset.fetchAssets(in: album, options: nil)
-        self.targetTitle = album.localizedTitle
-        self.navigationItem.backButtonTitle = ""
+        self.vm.prepareAssetForPhotoViewer(with: indexPath.row)
         self.performSegue(withIdentifier: "ToPhotoView", sender: self)
     }
 }

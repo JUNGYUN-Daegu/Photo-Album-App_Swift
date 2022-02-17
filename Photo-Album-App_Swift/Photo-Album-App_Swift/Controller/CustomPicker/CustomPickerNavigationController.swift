@@ -12,6 +12,10 @@ final class CustomPickerNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let customPickerViewModel = CustomPickerViewModel()
+        guard let rootVC = self.viewControllers.first as? AlbumViewController else { return }
+        rootVC.inject(viewModel: customPickerViewModel)
+        
         self.navigationBar.tintColor = .black
         self.navigationBar.backgroundColor = .systemGray6
     }

@@ -49,6 +49,13 @@ final class MainViewController: UIViewController {
         }), for: .touchUpInside)
         newVC.view.addSubview(button)
         newVC.view.backgroundColor = .lightGray
+        
+        let imageView = UIImageView(image: UIImage.init(systemName: "photo")?.withTintColor(.red))
+        newVC.view.addSubview(imageView)
+        imageView.frame = CGRect(x: 100, y: 200, width: 100, height: 100)
+        imageView.backgroundColor = .purple
+        
+        
         self.present(newVC, animated: true)
         
     }

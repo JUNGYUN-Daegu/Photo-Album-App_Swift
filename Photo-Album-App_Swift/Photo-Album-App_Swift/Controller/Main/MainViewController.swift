@@ -55,6 +55,7 @@ final class MainViewController: UIViewController {
         imageView.frame = CGRect(x: 100, y: 200, width: 100, height: 100)
         
         self.present(newVC, animated: true)
+        
     }
     
     private func getPermissionIfNecessary(completionHandler: @escaping (Bool) -> Void) {

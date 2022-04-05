@@ -38,28 +38,6 @@ final class MainViewController: UIViewController {
         self.present(pickerController, animated: true)
     }
     
-    @IBAction func didTapNewMainButton(_ sender: UIButton) {
-        let newVC = UIViewController()
-        newVC.modalPresentationStyle = .fullScreen
-        let button = UIButton(type: .system)
-        button.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
-        button.setTitle("Back", for: .normal)
-        button.addAction(UIAction(handler: { touched in
-            newVC.dismiss(animated: true)
-        }), for: .touchUpInside)
-        newVC.view.addSubview(button)
-        newVC.view.backgroundColor = .lightGray
-        
-        let imageView = UIImageView(image: UIImage.init(systemName: "photo")?.withTintColor(.red))
-        newVC.view.addSubview(imageView)
-        imageView.frame = CGRect(x: 100, y: 200, width: 100, height: 100)
-        imageView.backgroundColor = .purple
-        
-        
-        self.present(newVC, animated: true)
-        
-    }
-    
     private func getPermissionIfNecessary(completionHandler: @escaping (Bool) -> Void) {
         guard PHPhotoLibrary.authorizationStatus() != .authorized else {
           completionHandler(true)
@@ -126,6 +104,3 @@ extension MainViewController: UIImagePickerControllerDelegate, UINavigationContr
     }
  
 }
-
-
-/// dummy hot fix

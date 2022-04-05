@@ -51,7 +51,6 @@ final class MainViewController: UIViewController {
         newVC.view.backgroundColor = .lightGray
         self.present(newVC, animated: true)
         
-        /// dummy bug fix
     }
     
     private func getPermissionIfNecessary(completionHandler: @escaping (Bool) -> Void) {

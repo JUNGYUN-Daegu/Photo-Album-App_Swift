@@ -53,9 +53,8 @@ final class MainViewController: UIViewController {
         let imageView = UIImageView(image: UIImage.init(systemName: "photo")?.withTintColor(.red))
         newVC.view.addSubview(imageView)
         imageView.frame = CGRect(x: 100, y: 200, width: 100, height: 100)
-        imageView.backgroundColor = .purple
-        
-        
+        imageView.backgroundColor = .systemCyan
+
         self.present(newVC, animated: true)
         
     }
